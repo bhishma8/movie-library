@@ -42,6 +42,14 @@ const SearchInput = styled.input`
   outline: none;
   margin-left: 15px;
 `;
+const MovieListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px;
+  gap: 25px;
+  justify-content: space-evenly;;
+`;
 function App() {
   return (
     <Container>
@@ -52,6 +60,10 @@ function App() {
       <SearchInput placeholder="Search Movie"/>
       </SearchBox>
       </Header>
+
+      <MovieListContainer>
+        
+      </MovieListContainer>
     </Container>
   );
 }
