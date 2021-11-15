@@ -1,4 +1,6 @@
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import MovieComponent from './Components/MovieComponent';
 const Container=styled.div`
   display:flex;
   flex-direction:column;
@@ -50,19 +52,38 @@ const MovieListContainer = styled.div`
   gap: 25px;
   justify-content: space-evenly;;
 `;
+
 function App() {
+  const[searchQuery,updateSearchQuery]=useState();
+  const[timeoutId,updateTimeoutId]=useState();
+  const onTextChange=(event)=>{
+    clearTimeout(timeoutId);
+    updateSearchQuery(event.target.value);
+    const timeout=setTimeout(()=>console.log("API Called"),500);
+    updateTimeoutId(timeout)
+
+  };
   return (
     <Container>
       <Header>
       <AppName>Movie Library</AppName>
       <SearchBox>
       <SearchIcon src="/search-icon.svg"></SearchIcon>
-      <SearchInput placeholder="Search Movie"/>
+      <SearchInput 
+        placeholder="Search Movie" 
+        value={searchQuery}
+        onChange={onTextChange}
+
+        />
       </SearchBox>
       </Header>
 
       <MovieListContainer>
-        
+        <MovieComponent></MovieComponent>
+        <MovieComponent></MovieComponent>
+        <MovieComponent></MovieComponent>
+        <MovieComponent></MovieComponent>
+
       </MovieListContainer>
     </Container>
   );
