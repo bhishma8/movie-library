@@ -1,6 +1,8 @@
+import Axios from 'axios';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import MovieComponent from './Components/MovieComponent';
+const API_KEY="c129fa0b";
 const Container=styled.div`
   display:flex;
   flex-direction:column;
@@ -56,10 +58,18 @@ const MovieListContainer = styled.div`
 function App() {
   const[searchQuery,updateSearchQuery]=useState();
   const[timeoutId,updateTimeoutId]=useState();
+  
+  const fetchData=async(searchString)=>{
+    const res = await Axios.get(
+      `https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`,
+    );
+    console.log(res);
+    };
+  
   const onTextChange=(event)=>{
     clearTimeout(timeoutId);
     updateSearchQuery(event.target.value);
-    const timeout=setTimeout(()=>console.log("API Called"),500);
+    const timeout=setTimeout(()=>fetchData(event.target.value),500);
     updateTimeoutId(timeout)
 
   };
