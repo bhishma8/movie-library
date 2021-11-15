@@ -58,12 +58,14 @@ const MovieListContainer = styled.div`
 function App() {
   const[searchQuery,updateSearchQuery]=useState();
   const[timeoutId,updateTimeoutId]=useState();
-  
+  const[movieList,updateMovieList]=useState();
+
+
   const fetchData=async(searchString)=>{
     const res = await Axios.get(
       `https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`,
     );
-    console.log(res);
+    updateMovieList(res.data.Search);
     };
   
   const onTextChange=(event)=>{
@@ -89,10 +91,9 @@ function App() {
       </Header>
 
       <MovieListContainer>
-        <MovieComponent></MovieComponent>
-        <MovieComponent></MovieComponent>
-        <MovieComponent></MovieComponent>
-        <MovieComponent></MovieComponent>
+        {
+          movieList?.length?movieList.map((movie,index)=><MovieComponent key={index} movie={movie}/>): "No Movie Found"
+        }
 
       </MovieListContainer>
     </Container>
