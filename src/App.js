@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
-
+import styled from 'styled-components';
+const Container=styled.div`
+  display:flex;
+  flex-direction:column;
+  `;
+const Header=styled.div`
+display:flex;
+flex-direction:row;
+background-color:black;
+color:white;
+padding:10px;
+justify-content: space-between;
+align-items: center;
+ font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 3px 6px 0 #555;
+`;
+const AppName = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const SearchBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+  border-radius: 6px;
+  margin-left: 20px;
+  width: 50%;
+  background-color: white;
+  align-items:center;
+`;
+const SearchIcon = styled.img`
+  width: 32px;
+  height: 32px;
+`;
+const SearchInput = styled.input`
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  margin-left: 15px;
+`;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Header>
+      <AppName>Movie Library</AppName>
+      <SearchBox>
+      <SearchIcon src="/search-icon.svg"></SearchIcon>
+      <SearchInput placeholder="Search Movie"/>
+      </SearchBox>
+      </Header>
+    </Container>
   );
 }
 
