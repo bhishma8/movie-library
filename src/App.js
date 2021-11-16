@@ -2,7 +2,8 @@ import Axios from 'axios';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import MovieComponent from './Components/MovieComponent';
-const API_KEY="c129fa0b";
+import MovieInfoComponent from './Components/MovieInfoComponent';
+export const API_KEY="c129fa0b";
 const Container=styled.div`
   display:flex;
   flex-direction:column;
@@ -58,8 +59,8 @@ const MovieListContainer = styled.div`
 function App() {
   const[searchQuery,updateSearchQuery]=useState();
   const[timeoutId,updateTimeoutId]=useState();
-  const[movieList,updateMovieList]=useState();
-
+  const[movieList,updateMovieList]=useState([]);
+  const[selectedMovie,onMovieSelect]=useState();
 
   const fetchData=async(searchString)=>{
     const res = await Axios.get(
@@ -89,10 +90,11 @@ function App() {
         />
       </SearchBox>
       </Header>
-
+      {selectedMovie && <MovieInfoComponent selectedMovie={selectedMovie}/>}
       <MovieListContainer>
         {
-          movieList?.length?movieList.map((movie,index)=><MovieComponent key={index} movie={movie}/>): "No Movie Found"
+          movieList?.length?movieList.map((movie,index)=>
+          <MovieComponent key={index} movie={movie} onMovieSelect={onMovieSelect}/>): "No Movie Found"
         }
 
       </MovieListContainer>
