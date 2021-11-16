@@ -90,7 +90,7 @@ function App() {
         />
       </SearchBox>
       </Header>
-      {selectedMovie && <MovieInfoComponent selectedMovie={selectedMovie}/>}
+      {selectedMovie && <MovieInfoComponent selectedMovie={selectedMovie} onMovieSelect={onMovieSelect}/>}
       <MovieListContainer>
         {
           movieList?.length?movieList.map((movie,index)=>

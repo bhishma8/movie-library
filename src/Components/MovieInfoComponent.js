@@ -44,6 +44,17 @@ const MovieInfo = styled.span`
     opacity: 0.5;
   }
 `;
+const Close = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  background: lightgray;
+  height: fit-content;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.8;
+`;
 const MovieInfoComponent=(props)=>{
     const [movieInfo,setMovieInfo]=useState();
     const{selectedMovie}=props;
@@ -54,7 +65,8 @@ const MovieInfoComponent=(props)=>{
       }, [selectedMovie]);
     return (
         <Container>
-        <CoverImage src={movieInfo?.Poster}></CoverImage>
+        {movieInfo?<>
+            <CoverImage src={movieInfo?.Poster}></CoverImage>
         <InfoColumn>
         <MovieName>
               {movieInfo?.Type}: <span>{movieInfo?.Title}</span>
@@ -91,6 +103,10 @@ const MovieInfoComponent=(props)=>{
             </MovieInfo>
 
         </InfoColumn>
+        <Close onClick={()=>props.onMovieSelect()}>X</Close>
+
+        </>:"Loading...."}
+        
         </Container>
 
     );
