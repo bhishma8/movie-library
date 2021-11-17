@@ -81,7 +81,7 @@ function App() {
       <Header>
       <AppName>Movie Library</AppName>
       <SearchBox>
-      <SearchIcon src="/search-icon.svg"></SearchIcon>
+      <SearchIcon src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Search_Icon.svg"></SearchIcon>
       <SearchInput 
         placeholder="Search Movie" 
         value={searchQuery}
